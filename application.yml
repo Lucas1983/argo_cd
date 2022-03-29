@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: lmielczarek
+  namespace: lmielczarek
+spec:
+  destination:
+    namespace: lmielczarek
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: .
+    targetRevision: main
+    repoURL: https://github.com/Lucas1983/argo_cd.git
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
